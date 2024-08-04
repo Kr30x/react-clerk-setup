@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { UserButton } from "@clerk/nextjs"
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
+import { LogIn } from "lucide-react"
 
 
 export function Header(){
@@ -34,7 +35,7 @@ export function Header(){
                   prefetch={false}
                 >
                   <UsersIcon className="h-5 w-5" />
-                  Students
+                  Clients
                 </Link>
                 <Link
                   href="#"
@@ -82,11 +83,19 @@ export function Header(){
             <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search students..."
+              placeholder="Search clients..."
               className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
             />
           </div>
-          <UserButton />
+          <SignedOut>
+            <SignInButton>
+              <button className=''><LogIn size={24} /></button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          
         </header>
 
     )
